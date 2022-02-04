@@ -9,34 +9,27 @@ from tournaments import new_tournament
 MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY = range(7)
 Plan = namedtuple('Plan', 'freq, date, hour, variant, is960, base, inc, byo, duration')
 
-NO_TOURNEY = ["chess", "chess960", "crazyhouse", "atomic", "shogi", "minishogi"]  # tournaments are available on lichess/lishogi
-SHIELDS = ["crazyhouse960", "atomic960", "makruk", "shinobi"]
-SEATURDAY = ["makruk", "makpong", "sittuyin", "cambodian", "asean"]
+# NO_TOURNEY = ["chess", "chess960", "crazyhouse", "atomic", "shogi", "minishogi"]  # tournaments are available on lichess/lishogi
+SHIELDS = ["antichess", "antichess960", "losers", "losers960", "anti_antichess", "antihouse", "coffeehouse"]
+SEATURDAY = ["antichess960", "losers960", "anti_antichess", "antiatomic", "coffeehouse"]
 
 MONTHLY_VARIANTS = (
-    "dobutsu", "capahouse", "chak", "shogun", "orda", "gorogoroplus", "shouse",
-    "capablanca960", "hoppelpoppel", "grand", "janggi", "seirawan", "empire", "kyotoshogi",
-    "placement", "ordamirror", "capahouse960", "minixiangqi", "synochess", "grandhouse", "shako",
-    "manchu", "torishogi", "seirawan960", "chennis", "capablanca", "xiangqi",
+    "anti_antichess960", "antiatomic960", "antihouse960", "antipawns", "antipawns960", "antiplacement",
+    "antihoppelpoppel", "coffee_3check", "coffee_3check960", "coffeerace", "coffeehill", "coffeehill960",
+    "atomic_giveaway_hill", "atomic_giveaway_hill",
 )
 
 # Monthly Variant Tournaments need different TC
 TC_MONTHLY_VARIANTS = {v: (3, 2, 0) for v in MONTHLY_VARIANTS}
 
 for v in CATEGORIES["fairy"]:
-    TC_MONTHLY_VARIANTS[v] = (3, 3, 0)
-TC_MONTHLY_VARIANTS["shogun"] = (3, 10, 1)
+    TC_MONTHLY_VARIANTS[v] = (3, 2, 0)
 
 for v in CATEGORIES["army"]:
-    TC_MONTHLY_VARIANTS[v] = (3, 4, 0)
-TC_MONTHLY_VARIANTS["chak"] = (5, 3, 0)
+    TC_MONTHLY_VARIANTS[v] = (3, 2, 0)
 
-for v in GRANDS:  # anything with ten ranks, Grand, Xiangqi, etc
-    TC_MONTHLY_VARIANTS[v] = (5, 3, 0)
-TC_MONTHLY_VARIANTS["janggi"] = (5, 15, 1)
-
-for v in CATEGORIES["shogi"]:
-    TC_MONTHLY_VARIANTS[v] = (2, 15, 1)
+for v in CATEGORIES["chess"]:
+    TC_MONTHLY_VARIANTS[v] = (3, 2, 0)
 
 
 def go_month(orig_date, month=1):
@@ -97,19 +90,28 @@ class Scheduler:
             plans.append(Plan(MONTHLY, date, 16, v.rstrip("960"), is_960, base, inc, byo, 90))
 
         plans += [
-            Plan(SHIELD, self.second_monthly(MONDAY), 18, "crazyhouse", True, 3, 2, 0, 180),     # 960
-            Plan(SHIELD, self.second_monthly(THURSDAY), 18, "shinobi", False, 3, 4, 0, 180),
-            Plan(SHIELD, self.second_monthly(SATURDAY), 12, "makruk", False, 5, 3, 0, 180),
-            Plan(SHIELD, self.third_monthly(SUNDAY), 12, "atomic", True, 3, 2, 0, 180),          # 960
+            Plan(SHIELD, self.second_monthly(MONDAY), 18, "antichess", True, 3, 2, 0, 180),     # 960
+            Plan(SHIELD, self.second_monthly(THURSDAY), 18, "anti_antichess", False, 3, 2, 0, 180),
+            Plan(SHIELD, self.second_monthly(SATURDAY), 12, "antiatomic", False, 3, 2, 0, 180),
+            Plan(SHIELD, self.third_monthly(SUNDAY), 12, "losers", True, 3, 2, 0, 180),          # 960
 
-            Plan(MONTHLY, self.first_monthly(SATURDAY), 12, "asean", False, 3, 2, 0, 90),
+            Plan(MONTHLY, self.first_monthly(SATURDAY), 12, "antihouse", False, 3, 2, 0, 180),
             # The second Saturday is Makruk Shield
-            Plan(MONTHLY, self.third_monthly(SATURDAY), 12, SEA, False, 3, 2, 0, 90),
-            Plan(MONTHLY, self.fourth_monthly(SATURDAY), 12, "makpong", False, 3, 2, 0, 90),
+            Plan(MONTHLY, self.third_monthly(SATURDAY), 12, "antihouse", True, 3, 2, 0, 180),   # 960
+            Plan(MONTHLY, self.fourth_monthly(SATURDAY), 12, "antipawns", True, 3, 2, 0, 180),   # 960
+            Plan(MONTHLY, self.third_monthly(SUNDAY), 12, "coffee_3check", True, 3, 2, 0, 180),   # 960
+            Plan(MONTHLY, self.first_monthly(SUNDAY), 12, "coffee_3check", False, 3, 2, 0, 180),
+            Plan(MONTHLY, self.fourth_monthly(SUNDAY), 12, "coffeerace", False, 3, 2, 0, 180),
+            Plan(MONTHLY, self.fourth_monthly(FRIDAY), 12, "atomic_giveaway_hill", False, 3, 2, 0, 180),
+            Plan(MONTHLY, self.third_monthly(FRIDAY), 12, "atomic_giveaway_hill", True, 3, 2, 0, 180),  # 960
 
-            Plan(WEEKLY, self.next_day_of_week(FRIDAY), 18, "crazyhouse", True, 3, 0, 0, 60),    # 960
-            Plan(WEEKLY, self.next_day_of_week(TUESDAY), 18, "atomic", True, 3, 0, 0, 60),       # 960
-            Plan(WEEKLY, self.next_day_of_week(THURSDAY), 14, "makruk", False, 3, 2, 0, 90),
+
+            Plan(WEEKLY, self.next_day_of_week(FRIDAY), 18, "antichess", False, 3, 2, 0, 180),
+            Plan(WEEKLY, self.next_day_of_week(TUESDAY), 18, "anti_antichess", True, 3, 0, 0, 180),       # 960
+            Plan(WEEKLY, self.next_day_of_week(THURSDAY), 14, "antiatomic", False, 3, 2, 0, 180),
+            Plan(WEEKLY, self.next_day_of_week(WEDNESDAY), 14, "antiplacement", False, 3, 2, 0, 180),
+            Plan(WEEKLY, self.next_day_of_week(MONDAY), 16, "antihoppelpoppel", False, 3, 2, 0, 180),
+            Plan(WEEKLY, self.next_day_of_week(SATURDAY), 16, "coffeehouse", False, 3, 2, 0, 180),
         ]
 
         return plans
@@ -156,7 +158,7 @@ def new_scheduled_tournaments(already_scheduled, now=None):
 
             new_tournaments_data.append({
                 "name": name,
-                "createdBy": "PyChess",
+                "createdBy": "Liantichess",
                 "frequency": plan.freq,
                 "variant": plan.variant,
                 "chess960": plan.is960,
