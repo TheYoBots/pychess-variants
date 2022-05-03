@@ -1,7 +1,7 @@
 from settings import static_url
 
 SCHEDULE_MAX_DAYS = 7
-TOURNAMENT_SPOTLIGHTS_MAX = 1
+TOURNAMENT_SPOTLIGHTS_MAX = 4
 
 # Max number of lobby chat lines (deque limit)
 MAX_CHAT_LINES = 100
@@ -296,8 +296,10 @@ def variant_display_name(variant):
         return "S-HOUSE"
     elif variant == "cambodian":
         return "OUK CHATRANG"
-#    elif variant == "ordamirror":
- #       return "ORDA MIRROR"
+    elif variant == "ordamirror":
+        return "ORDA MIRROR"
+    elif variant == "gorogoroplus":
+        return "GOROGORO+"
     elif variant == "kyotoshogi":
         return "KYOTO SHOGI"
     elif variant == "torishogi":

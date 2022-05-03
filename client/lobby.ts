@@ -163,8 +163,7 @@ export class LobbyController {
             onerror: (e: Event) => console.log('Error:', e),
         };
 
-        //const ws = location.host.includes('pychess') ? 'wss://' : 'ws://';
-        const ws = (location.host.indexOf('0.0.0.0') === -1) ? 'wss://' : 'ws://'
+        const ws = location.host.includes('liantichess') ? 'wss://' : 'ws://';
         this.sock = new Sockette(ws + location.host + "/wsl", opts);
 
         // get seeks when we are coming back after a game
@@ -174,7 +173,7 @@ export class LobbyController {
         patch(document.getElementById('seekbuttons') as HTMLElement, h('div#seekbuttons', this.renderSeekButtons()));
         patch(document.getElementById('lobbychat') as HTMLElement, chatView(this, "lobbychat"));
 
-  //      patch(document.getElementById('variants-catalog') as HTMLElement, variantPanels(this));
+        patch(document.getElementById('variants-catalog') as HTMLElement, variantPanels(this));
 
         this.streams = document.getElementById('streams') as HTMLElement;
 
@@ -955,18 +954,15 @@ export function lobbyView(model: PyChessModel): VNode[] {
                 h('div#seeks-wrapper', h('table#seeks', { hook: { insert: vnode => runSeeks(vnode, model) } })),
             ]),
         ]),
-  //      h('div#variants-catalog'),
+        h('div#variants-catalog'),
         h('aside.sidebar-second', [ h('div#seekbuttons') ]),
         h('under-left', [
             h('a.reflist', { attrs: { href: 'https://discord.gg/5qvjPQstKS' } }, 'Discord'),
             h('a.reflist', { attrs: { href: 'https://github.com/SriMethan/Liantichess' } }, 'Github'),
+            h('a.reflist', { attrs: { href: '/patron' } }, _("Donate")),
             h('a.reflist', { attrs: { href: '/faq' } }, _("FAQ")),
             h('a.reflist', { attrs: { href: '/stats' } }, _("Stats")),
             h('a.reflist', { attrs: { href: '/about' } }, _("About")),
-        ]),
-        h('under-right', [
-            h('a', { attrs: { href: '/players' } }, [ h('counter#u_cnt') ]),
-            h('a', { attrs: { href: '/games' } }, [ h('counter#g_cnt') ]),
         ]),
         h('under-lobby', [
             h('posts', [
@@ -996,6 +992,10 @@ export function lobbyView(model: PyChessModel): VNode[] {
                     h('time', '2022.03.11'),
                 ]),
             ]),
+        ]),
+        h('under-right', [
+            h('a', { attrs: { href: '/players' } }, [ h('counter#u_cnt') ]),
+            h('a', { attrs: { href: '/games' } }, [ h('counter#g_cnt') ]),
         ]),
     ];
 }

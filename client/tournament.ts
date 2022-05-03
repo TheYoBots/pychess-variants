@@ -81,8 +81,8 @@ interface MsgUserConnectedTournament {
     urating: number;
     tstatus: number;
     description: string;
-//    defender_name: string;
-//    defender_title: string;
+    defender_name: string;
+    defender_title: string;
     secondsToStart: number;
     secondsToFinish: number;
 }
@@ -190,8 +190,7 @@ export default class TournamentController {
             onerror: (e: Event) => console.log('Error:', e),
         };
 
-        //const ws = (location.host.indexOf('pychess') === -1) ? 'ws://' : 'wss://';
-        const ws = (location.host.indexOf('0.0.0.0') === -1) ? 'wss://' : 'ws://'
+        const ws = (location.host.indexOf('liantichess') === -1) ? 'ws://' : 'wss://';
         this.sock = new Sockette(ws + location.host + "/wst", opts);
 
         this.variant = VARIANTS[model["variant"]];
@@ -629,14 +628,13 @@ export default class TournamentController {
         return h('div.description', text);
     }
 
-/*
     renderDefender(name: string, title: string) {
         return h('div.defender', [
             _('Defender:'),
             playerInfo(name, title)
         ]);
     }
-*/
+
     private onMsgUserConnected(msg: MsgUserConnectedTournament) {
         const chess960 = this.chess960;
         const dataIcon = this.variant.icon(chess960);
@@ -666,8 +664,8 @@ export default class TournamentController {
         const description = document.getElementById('description') as Element;
         if (msg.description.length > 0 && description) patch(description, this.renderDescription(msg.description));
 
-//        const defender = document.getElementById('defender') as Element;
-//        if (msg.defender_name && defender) patch(defender, this.renderDefender(msg.defender_name, msg.defender_title));
+        const defender = document.getElementById('defender') as Element;
+        if (msg.defender_name && defender) patch(defender, this.renderDefender(msg.defender_name, msg.defender_title));
 
         this.username = msg.username;
         this.tournamentStatus = T_STATUS[msg.tstatus as keyof typeof T_STATUS];
@@ -851,7 +849,7 @@ export function tournamentView(model: PyChessModel): VNode[] {
                 ]),
                 // TODO: update in onMsgUserConnected()
                 h('div#description'),
-//                h('div#defender'),
+                h('div#defender'),
                 h('div#requirements'),
                 h('div#startsAt'),
                 h('div#startFen'),

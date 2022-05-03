@@ -4,11 +4,11 @@
 
 <details><summary>What is Liantichess?</summary>
 
-Liantichess is a website dedicated to to play antichess and antichess960. Derived From Pychess and Credits to Gbtami .</details>
+Liantichess is a website dedicated to allowing people to play major and interesting antichess variants, derived from Pychess. Please see [the about page](https://liantichess.herokuapp.com/about).</details>
 
 <details><summary>Why is it called Liantichess?</summary>
 
-The server code is written like pychess and to play antichess.</details>
+The server code is written in Python and is derived from Pychess. Since it has a similar feel to lichess and is for users to play antichess, it has been named Liantichess (Lichess Antichess).</details>
 
 <details><summary>What is the relationship to [Lichess](https://lichess.org/)?</summary>
 
@@ -32,6 +32,13 @@ It is the strongest available on this site, but does not represent Fairy-Stockfi
 
 Check out the [Variants page](https://liantichess.herokuapp.com/variants).</details>
 
+<details><summary>How do you play XXX?</summary>
+
+Check out the [Variants page](https://liantichess.herokuapp.com/variants). Also, within a game, you can click the variant name at the top left to be taken to that game's learn page.</details>
+
+<details><summary>Can you add XXX?</summary>
+
+It depends on how popular or how interesting the variant is. We can't even consider adding variants that aren't supported by Fairy-Stockfish. Otherwise, you can ask us on Discord or Github.</details>
 
 ## Interface
 
@@ -51,6 +58,14 @@ Use the right click. Clicking gives you a circle, and dragging gives you an arro
 
 Those are the time controls for the game. By default we use an increment system. "5+3" means each player has 5 *minutes*, and after each move adds 3 *seconds* to the clock. You can set the time control to be whatever you want when creating the game. The 5+3 is just the default for random mover.</details>
 
+<details><summary>Okay, what about the (b) in "5+3(b)"?</summary>
+
+The b signifies byo-yomi time control, which is different from increment, and is only used in certain variants (i.e. Shogi and Janggi). Each player has a fixed time bank (5 minutes, in this example), and then after that, they only have the byo-yomi period for the rest of their moves before losing. In this example, that means only 3 seconds per move. Typically, byo-yomi is played with more than just 3 seconds... usually anywhere from 10 seconds to 30 seconds.</details>
+
+<details><summary>What is Random-Mover?</summary>
+
+Random-Mover is a bot that just chooses a random move from the list of available options. It serves as a great way to familiarize oneself with piece movements and some rules. It is strongly recommended to train against Fairy-Stockfish (even a lower level) once you know the rules though.</details>
+
 ## Social/Accounts
 
 <details><summary>How do I log in?</summary>
@@ -59,7 +74,7 @@ You need to have a Lichess account. If you don't already, please go to [Lichess]
 
 <details><summary>Would logging in with my Lichess account compromise my account/password?</summary>
 
-No! That is done via OAuth and your password isn't revealed to LiAntichess, just like how you can log in to third-party websites with your Google or Facebook accounts.</details>
+No! That is done via OAuth and your password isn't revealed to Liantichess, just like how you can log in to third-party websites with your Google or Facebook accounts.</details>
 
 <details><summary>What's the best way to contact the developers?</summary>
 

@@ -23,7 +23,7 @@ import { CrossTable, MsgBoard } from './messages';
 
 // redirect to correct URL except Heroku preview apps
 if (window.location.href.includes('heroku') && !window.location.href.includes('-pr-')) {
-    //window.location.assign('https://www.pychess.org/');
+    window.location.assign('https://liantichess.herokuapp.com/');
 }
 
 export type PyChessModel = {
