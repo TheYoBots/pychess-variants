@@ -40,9 +40,8 @@ The Wiki further describes [how to setup a development environment](https://gith
 
 Liantichess should support almost all browsers. Though older browsers (including any version of Internet Explorer) will not work. For your own sake, please upgrade. Security and performance, think about it!
 
-Only [Fairy-Stockfish analysis](https://liantichess.herokuapp.com/analysis/antichess) might not work on all browsers. The browser support can be found [here](https://github.com/TheYoBots/stockfish.wasm#requirements).
+Only [Fairy-Stockfish analysis](https://liantichess.herokuapp.com/analysis/antichess) might not work on all browsers.
 
 ## Credits
 
 Credits to [gbtami](https://github.com/gbtami) for the main [code](https://github.com/gbtami/pychess-variants)
-

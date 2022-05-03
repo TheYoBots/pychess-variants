@@ -18,7 +18,7 @@ done
 
 
 SRC='https://github.com/gbtami/pychess-variants/blob/master'; 
-#DST='https://liantichess.herokuapp.com';
+#DST='https://www.pychess.org';
 DST='https://cdn.jsdelivr.net/gh/gbtami/pychess-variants\@1.7.5';
 find . -type f -name "*.html" -exec perl -pi -e s,$SRC,$DST,g '{}' +
 
