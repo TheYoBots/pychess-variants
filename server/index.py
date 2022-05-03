@@ -333,7 +333,7 @@ async def index(request):
     elif view == "patron":
         template = get_template("patron.html")
     elif view == "titled-players":
-        template = get_template("titled-players.html")        
+        template = get_template("titled-players.html")
     elif view == "faq":
         template = get_template("FAQ.html")
     elif view == "analysis":

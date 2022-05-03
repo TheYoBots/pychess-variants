@@ -105,14 +105,26 @@ class Scheduler:
             Plan(SHIELD, self.fourth_monthly(SUNDAY), 18, "anti_antichess", False, 3, 2, 0, 180),
             # Monthly Tournaments
             # Mondays of the month
-            Plan(MONTHLY, self.first_monthly(MONDAY), 18, "atomic_giveaway_hill", True, 3, 2, 0, 180),
+            Plan(
+                MONTHLY, self.first_monthly(MONDAY), 18, "atomic_giveaway_hill", True, 3, 2, 0, 180
+            ),
             Plan(MONTHLY, self.second_monthly(MONDAY), 18, "coffee_3check", True, 3, 2, 0, 180),
             Plan(MONTHLY, self.third_monthly(MONDAY), 18, "coffeehill", True, 3, 2, 0, 180),
             Plan(MONTHLY, self.fourth_monthly(MONDAY), 18, "coffeehouse", True, 3, 2, 0, 180),
             # Tuesdays of the month
             Plan(MONTHLY, self.first_monthly(TUESDAY), 18, "antihouse", True, 3, 2, 0, 180),
             Plan(MONTHLY, self.second_monthly(TUESDAY), 18, "antiatomic", True, 3, 2, 0, 180),
-            Plan(MONTHLY, self.third_monthly(TUESDAY), 18, "atomic_giveaway_hill", False, 3, 2, 0, 180),
+            Plan(
+                MONTHLY,
+                self.third_monthly(TUESDAY),
+                18,
+                "atomic_giveaway_hill",
+                False,
+                3,
+                2,
+                0,
+                180,
+            ),
             Plan(MONTHLY, self.fourth_monthly(TUESDAY), 18, "anti_antichess", True, 3, 2, 0, 180),
             # Wednesdays of the month
             Plan(MONTHLY, self.first_monthly(WEDNESDAY), 18, "coffeerace", False, 3, 2, 0, 180),
