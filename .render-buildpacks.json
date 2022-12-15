@@ -1,0 +1,7 @@
+{
+  "buildpacks": [
+    "heroku/nodejs",
+    "heroku/python",
+    "https://github.com/ianpurvis/heroku-buildpack-version"
+  ]
+}
